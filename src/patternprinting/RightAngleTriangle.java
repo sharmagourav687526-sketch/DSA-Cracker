@@ -1,19 +1,32 @@
 package patternprinting;
+
 import java.util.Scanner;
 
 public class RightAngleTriangle {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String args[]) {
 
-        int n = sc.nextInt();
+        System.out.print("Enter the number of rows for the right angle triangle: ");
+        Scanner input = new Scanner(System.in);
+        int rows = input.nextInt();
 
-        for (int row = 1; row <= n; row++) {
-            for (int col = 1; col <= row; col++) {
-                System.out.print("* ");
+        // Pre-size the capacity (rows * (rows + 1) / 2 + rows newlines)
+        int estimatedCapacity = rows * (rows + 1) / 2 + rows;
+        StringBuilder RightAngleTriangle = new StringBuilder(estimatedCapacity);
+
+        // Get platform-independent line seperator
+        String lineSeperator = System.lineSeparator();
+
+        // printing Right Angled Triangle using for loops
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j <= i; j++) {
+                RightAngleTriangle.append('*'); // Use single quotes for char literal
             }
-            System.out.println();
+            RightAngleTriangle.append(lineSeperator);
         }
 
-        sc.close();
+        System.out.println(RightAngleTriangle);
+
+        input.close();
     }
 }
