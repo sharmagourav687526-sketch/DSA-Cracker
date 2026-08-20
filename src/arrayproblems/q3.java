@@ -1,3 +1,5 @@
+// Print Alternate Extreme elememnts of an Array
+
 package arrayproblems;
 
 public class q3 {
