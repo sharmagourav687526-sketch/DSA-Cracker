@@ -13,6 +13,8 @@ public class FindMissingNumber {
         int[] range = {901, 1000};
         long missingNumber = findMissingNumOfArray(arr, range);
         System.out.println("Missing number is: " + missingNumber);
+        missingNumber = findMissingNumXOR(arr, range);
+        System.out.println("Missing number is: " + missingNumber);
     }
 
     /**
@@ -38,5 +40,33 @@ public class FindMissingNumber {
         }
 
         return expectedSum - actualSum;
+    }
+
+
+    /**
+     * Finds the missing number using Bitwise XOR.
+     * Prevents any possibility of integer overflow.
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     */
+    public static int findMissingNumXOR(int[] arr, int[] range) {
+        if (range == null || range.length < 2) {
+            throw new IllegalArgumentException("Invalid range array.");
+        }
+
+        int xorSum = 0;
+
+        // Step 1: XOR all numbers expected in the full range [L, R]
+        for (int i = range[0]; i <= range[1]; i++) {
+            xorSum ^= i;
+        }
+
+        // Step 2: XOR all numbers present in the array
+        for (int num : arr) {
+            xorSum ^= num;
+        }
+
+        // All duplicate numbers cancel out to 0; only the missing number remains
+        return xorSum;
     }
 }
